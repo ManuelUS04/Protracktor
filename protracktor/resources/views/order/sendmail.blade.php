@@ -11,7 +11,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-
 <body>
     <div>
         <div class="">
@@ -21,14 +20,50 @@
                         Welcome
                     </h2>
                     <div class="row">
+                        @foreach($audience as $aud_ce)
+                        @if($aud_ce['buyer']['checked'])
                         <div class="col-12 col-lg-1 p-2">
                             <label for="">Buller</label>
                             <input type="radio">
                         </div>
+                        @endif
+                        @if($aud_ce['listing_agent']['checked'])
+                        <div class="col-12 col-lg-1 p-2">
+                            <label for="">Listing agent</label>
+                            <input type="radio">
+                        </div>
+                        @endif
+                        @if($aud_ce['lender']['checked'])
+                        <div class="col-12 col-lg-1 p-2">
+                            <label for="">Lender</label>
+                            <input type="radio">
+                        </div>
+                        @endif
+                        @if($aud_ce['seller']['checked'])
                         <div class="col-12 col-lg-1 p-2">
                             <label for="">Seller</label>
                             <input type="radio">
                         </div>
+                        @endif
+                        @if($aud_ce['buying_agent']['checked'])
+                        <div class="col-12 col-lg-1 p-2">
+                            <label for="">Buying agent</label>
+                            <input type="radio">
+                        </div>
+                        @endif
+                        @if($aud_ce['settlement_agent']['checked'])
+                        <div class="col-12 col-lg-1 p-2">
+                            <label for="">Settlement agent</label>
+                            <input type="radio">
+                        </div>
+                        @endif
+                        @if($aud_ce['title_company']['checked'])
+                        <div class="col-12 col-lg-1 p-2">
+                            <label for="">Title company</label>
+                            <input type="radio">
+                        </div>
+                        @endif
+                        @endforeach
                     </div>
                     <button id="save-draft" class="btn" type="button">
                         <i class="bi bi-save-fill fs-2x"></i>
@@ -200,6 +235,5 @@
         </div>
     </div>
 </body>
-
 </html>
 @endsection

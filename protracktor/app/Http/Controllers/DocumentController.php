@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Http;
 use App\Http\Repositories\DocumentRepository;
 use SendGrid\Mail\Mail;
 use App\Models\Event;
+use Illuminate\Support\Str;
 use App\Http\Repositories\SmsRepository;
 
 class DocumentController extends Controller
@@ -41,13 +42,27 @@ class DocumentController extends Controller
         $subtitulo = $event->active_version->subtitle_block;
         $imagen = $event->active_version->bg_block_image;
         $events = $event->active_version->text_blocks;
-
+        //$t = json_encode($r);
+        $i = [];
+        //return ($imagen);
         foreach ($events as $ev) {
-            $i = $ev->block_content;
+            $r[] = str_replace('\\','',$ev->audience);
+            $a[] = $ev->block_content;            
+            $t[]= json_decode(str_replace('\\','',$ev->audience), true);          
         }
+        //return $a;
+        /* dd($t);
+         foreach($t as $o){
+            if($o['buyer']['checked']){
+                $p[] = $o;
+            }
+         }
+        dd($t[0]['buyer']); */
+        //$url = substr($imagen,21, 39);
+        //$text = preg_replace("",'',$i);
+        //$s = json_decode($i,true);        
+        
 
-
-        //return($events);
         $email = new Mail();
         $email->setFrom("rbocanegra@ctdevelopers.com", "From Roberto");
         $email->setSubject("Testing Sendgrid");
@@ -90,11 +105,11 @@ class DocumentController extends Controller
     </div>
 </div>
 <div class='position-relative'>
-    <img src='$imagen' alt='image-lg' class='img-fluid rounded-bottom'>
+    <img src='.$imagen.' alt='image-lg' class='img-fluid rounded-bottom'>
 </div>
 </div>
 <div>
-$i
+$a[0]
 </div>
 </body>
 </html>
